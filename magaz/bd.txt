@@ -1,0 +1,50 @@
+-- Tabela pentru produsele din depozit
+CREATE TABLE depozit (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nume VARCHAR(255) NOT NULL,
+    descriere TEXT,
+    stoc INT,
+    pret DECIMAL(10, 2),
+    creat_la TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modificat_la TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela pentru produsele din magazin
+CREATE TABLE magazin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produs_id INT,
+    cantitate INT,
+    FOREIGN KEY (produs_id) REFERENCES depozit(id)
+);
+
+
+
+
+
+-- Crearea tabelului "utilizatori"
+CREATE TABLE utilizatori (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    login VARCHAR(50),
+    pass VARCHAR(50)
+);
+
+-- Inserarea înregistrării 1
+INSERT INTO utilizatori (login, pass)
+VALUES ('admin', '1234');
+
+INSERT INTO utilizatori (login, pass)
+VALUES ('root', '12345');
+
+
+
+INSERT INTO depozit (nume, descriere, stoc, pret) VALUES
+    ('Televizor LED Samsung', 'Televizor LED Full HD, diagonala 55 inch', 10, 2000),
+    ('Frigider LG', 'Frigider cu tehnologie de economisire a energiei', 5, 1500),
+    ('Mașină de spălat Bosch', 'Mașină de spălat cu încărcare frontală', 8, 1800),
+    ('Aparat de aer condiționat Mitsubishi', 'Aparat de aer condiționat cu funcție de încălzire', 12, 2500),
+    ('Cuptor cu microunde Panasonic', 'Cuptor cu microunde cu multiple funcții', 15, 500),
+    ('Aspirator Dyson', 'Aspirator fără fir cu tehnologie ciclonică', 20, 800),
+    ('Blendă Philips', 'Blendă cu putere mare și multiple trepte de viteză', 10, 150),
+    ('Robot de bucătărie KitchenAid', 'Robot de bucătărie cu funcții avansate', 5, 1000),
+    ('Mașină de cafea DeLonghi', 'Mașină de cafea cu funcții automate', 8, 600),
+    ('Aparat de ras Braun', 'Aparat de ras electric cu lamă de precizie', 12, 200);
